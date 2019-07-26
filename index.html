@@ -1,0 +1,56 @@
+<body>
+  <!--
+  This is your checkout form.
+
+  NOTE: Here, we're using `data-name` to prevent sending credit card information fields to the backend server via HTTP Post
+  (according to the security best practice https://www.omise.co/security-best-practices#never-send-card-data-through-your-servers).
+  -->
+  <form id="checkout-form" action="/checkout.php" method="POST">
+
+    <!-- This is a hidden field you must add, to input omise token -->
+    <input type="hidden" name="omiseToken" />
+
+    <!-- This is card information fields that we required for tokenization -->
+    <div>
+      <label>Card Number</label>
+      <input type="text" data-name="cardNumber" placeholder="••••••••••••••••" />
+    </div>
+
+    <div>
+      <label>Name on card</label>
+      <input type="text" data-name="nameOnCard" placeholder="Full Name" />
+    </div>
+
+    <div>
+      <label>Expiry date</label>
+      <select data-name="expiryMonth">
+        <option value="">MM</option>
+        <option value="1">1</option>
+        <!-- ... -->
+        <option value="12">12</option>
+      </select>
+
+      <select data-name="expiryYear">
+        <option value="">YYYY</option>
+        <option value="2017">2017</option>
+        <!-- ... -->
+        <option value="2025">2025</option>
+      </select>
+    </div>
+
+    <div>
+      <label>Security code</label>
+      <input type="text" data-name="securityCode" placeholder="123" />
+    </div>
+
+    <div>
+      <button>Checkout</button>
+    </div>
+  </form>
+
+  <!-- Include omise.js. -->
+  <script src="https://cdn.omise.co/omise.js"></script>
+
+  <!-- Include your app.js. -->
+  <script src="app.js"></script>
+</body>
